@@ -7,7 +7,7 @@ const Pages = () => {
     const [pageData, setPageData] = useState("")
     const pageChangeHandler = (event, i) => {
 
-        axios.get('http://localhost:3005/'+pages[i])
+        axios.get('http://localhost:5000/'+pages[i])
             .then((Response) => setPageData(Response.data))
     }
 

@@ -4,10 +4,10 @@ const url = require('url');
 
 
 
-const userRequestResponseHandler = (request, response) => {
+const userRequestResponseHandler = (request) => {
     let searchedName = []
 
-    response.setHeader("Access-Control-Allow-Origin", "*");
+
     const parsedUrl = url.parse(request.url, true)
     console.log(parsedUrl);
     if (request.method == 'GET' && parsedUrl.pathname == '/users') {
@@ -20,49 +20,49 @@ const userRequestResponseHandler = (request, response) => {
         }
     }
 
+    return JSON.stringify(searchedName)
 
-    response.end(JSON.stringify(searchedName));
 
 
 }
 
 
 
-const studentRequestResponseHandler = (request, response) => {
+const studentRequestResponseHandler = (request) => {
 
     let filteredBranch = [...students];
-    response.setHeader("Access-Control-Allow-Origin", "*");
+
     const parsedUrl = url.parse(request.url, true)
     console.log(parsedUrl);
     if (request.method == 'GET' && parsedUrl.pathname == '/students' && parsedUrl.query.branch && parsedUrl.query.branch != 'ALL')
-            filteredBranch = students.filter(eachStudent => eachStudent.branch == parsedUrl.query.branch)
+        filteredBranch = students.filter(eachStudent => eachStudent.branch == parsedUrl.query.branch)
 
+    return JSON.stringify(filteredBranch)
 
-    response.end(JSON.stringify(filteredBranch))
 }
 
 
-const pagesRequestResponseHandler = (request , response) =>{
-    response.setHeader("Access-Control-Allow-Origin", "*");
-    
-    const parsedUrl = url.parse(request.url , true)
+const pagesRequestResponseHandler = (request) => {
+
+
+    const parsedUrl = url.parse(request.url, true)
     console.log(parsedUrl)
-    if(parsedUrl.pathname == '/home') 
-    {
-        response.end('home page')
+    if (parsedUrl.pathname == '/home') {
+
+        return "home page"
 
     }
-    if(parsedUrl.pathname == '/about')
-    {
-        response.end(" about page")
+    if (parsedUrl.pathname == '/about') {
+
+        return "about page"
     }
-    if(parsedUrl.pathname == '/Contactus')
-    {
-        response.end(" contact page ")
+    if (parsedUrl.pathname == '/Contactus') {
+
+        return "contact page"
     }
 
 
-} 
+}
 
 
-module.exports = { userRequestResponseHandler, studentRequestResponseHandler , pagesRequestResponseHandler }
+module.exports = { userRequestResponseHandler, studentRequestResponseHandler, pagesRequestResponseHandler }
