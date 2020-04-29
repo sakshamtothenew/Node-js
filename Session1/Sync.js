@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-const  fileContent = fs.readFileSync('toBeReadFile.txt' , 'Utf8')
+const fileContent = fs.readFileSync('toBeReadFile.txt', 'Utf8')
 
 console.log(fileContent);
 

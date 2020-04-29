@@ -1,0 +1,28 @@
+.Ques2{
+    display: flex;
+    max-width: 100%;
+    margin: auto;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    }
+    
+    .StudentTable{
+    border-collapse: collapse;
+    }
+    
+    .StudentTable th{
+    background-color: #ccc;
+    }
+    
+    .StudentTable td, th{
+    padding: 0.8rem;
+    border: 1px solid #aaa;
+    }
+    
+    .Filter{
+    display: block;
+    
+    margin: 1rem 0;
+    background-color: transparent;
+    }
+    
