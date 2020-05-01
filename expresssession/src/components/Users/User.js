@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import classes from './user.module.css'
+import { withRouter } from 'react-router-dom'
 
-const Users = () => {
+const Users = (props) => {
 
 
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
 
-        axios.get('http://localhost:5000/')
+        axios.get('http://localhost:5000/' + props.sessionId)
             .then(Response => {
-
+                if (typeof (Response.data) == "string") {
+                    setUsers([])
+                    alert("session expires please login ")
+                    props.history.push('/login')
+                }
                 setUsers(Response.data);
             })
     }, [])
@@ -21,10 +26,10 @@ const Users = () => {
     const userDeletehandler = (timestamp) => {
 
         axios.delete('http://localhost:5000/' + timestamp )
-        .then(response => {
+            .then(response => {
                 console.log(response.data)
-            setUsers(response.data);
-        })
+                setUsers(response.data);
+            })
     }
 
 
@@ -34,11 +39,11 @@ const Users = () => {
     const userslist = users.map((eachStudent) => {
 
         return (
-            <tr key = {eachStudent.createdAt}>
+            <tr key={eachStudent.createdAt}>
                 <td>{eachStudent.firstname}</td>
                 <td>{eachStudent.lastname}</td>
                 <td>{eachStudent.branch}</td>
-                <td><button onClick = {() => userDeletehandler(eachStudent.createdAt)} className = {classes.btn}>Delete</button></td>
+                <td><button onClick={() => userDeletehandler(eachStudent.createdAt)} className={classes.btn}>Delete</button></td>
             </tr>
         )
     })
@@ -50,7 +55,7 @@ const Users = () => {
         <div>
             <div className={classes.Ques2}>
                 <h1>All Users</h1>
-                <div>  
+                <div>
                     <table className={classes.StudentTable}>
                         <thead>
                             <tr>
@@ -73,4 +78,4 @@ const Users = () => {
 }
 
 
-export default Users
+export default withRouter(Users)
