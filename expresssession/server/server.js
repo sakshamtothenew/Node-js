@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const { userData } = require('./data')
 const session = require('express-session')
 const cors = require('cors')
-
+const axios = require('axios')
 
 
 const sessions = [];
@@ -141,6 +141,15 @@ app.get('/aboutus', (req, res) => {
 })
 
 
+app.get('/github/:username' , (req , res) => {
+
+    axios.get('https://api.github.com/users/'+req.params.username)
+    .then(response => {
+            console.log(response)
+            res.send(response.data.html_url);
+    })
+    .catch(err => res.send("Not Found"))
+})
 
 
 app.listen(5000, () => {

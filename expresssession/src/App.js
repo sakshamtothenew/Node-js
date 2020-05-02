@@ -10,6 +10,7 @@ import axios from 'axios';
 
 function App(props) {
   const [sessionId, setSessionId] = useState(null)
+  const [userGit , setUserGit] = useState("");
 
   useEffect(() => {
     let sessionid = sessionStorage.getItem("sessionId")
@@ -31,17 +32,20 @@ function App(props) {
 
   const authHandler = (event) => {
     event.preventDefault()
-    const creds = {
-      email: event.target[0].value,
-      password: event.target[1].value
-    }
-    axios.post('http://localhost:5000/session', creds)
+   const username = event.target[0].value;
+   console.log(username)
+    axios.post('http://localhost:5000/session')
       .then(res => {
         console.log(res.data)
         setSessionId(res.data);
         sessionStorage.setItem("sessionId" , res.data.sessionid)
         sessionStorage.setItem("expire" , res.data.expire)
         props.history.push('/')
+      })
+      axios.get('http://localhost:5000/github/'+username)
+      .then(response => {
+        console.log(response.data)
+          setUserGit("user git is: " + response.data);
       })
   }
 
@@ -65,6 +69,7 @@ function App(props) {
   return (
     <div>
       <Navbar />
+      <div className = "usergit">{userGit}</div>
       {route}
     </div>)
 }

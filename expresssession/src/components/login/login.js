@@ -8,7 +8,6 @@ const login = (props) => {
         <form onSubmit = {props.login} className ={classes.form}>
             <h1>Login</h1>
             <input placeholder="username" type="text" />
-            <input placeholder="password 4-6 chars" type="password" />
             <button>Login</button>
         </form>
     </div>)
