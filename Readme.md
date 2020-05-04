@@ -2,7 +2,7 @@
 
     ### Question 1-2:
       ![image of Question1]
-        ("/outputScreenshots/question1-2.jpeg")
+        ("https://ibb.co/J7mQ6Dp")
 
     
     ### Question 3 :
