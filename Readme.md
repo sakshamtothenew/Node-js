@@ -1,7 +1,8 @@
 ## All the question to Mongo introduction session are mentioned below with screenshots 
 
     ### Question 1-2:
-        url("./outputScreenshots/question1-2.jpeg")
+      ![image of Question1]
+        ("/outputScreenshots/question1-2.jpeg")
 
     
     ### Question 3 :
