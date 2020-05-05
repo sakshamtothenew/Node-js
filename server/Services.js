@@ -1,18 +1,26 @@
 const itemModel = require('./model/item.model')
 
+
+const convertDate = (date) => {
+
+    return new Date(date)
+} 
 const addItem = async ({
     name,
     quantity,
     isSanitized,
+    expirydate,
     category,
-    location
+    location,
+
 }) => {
     return new Promise((resolve, reject) => {
-
+            const expiry = convertDate(expirydate);
         itemModel.create({
             name: name,
             quantity: quantity,
             isSanitized: isSanitized,
+            expirydate : expiry,
             category: category,
             location: location
         }, (err, result) => {

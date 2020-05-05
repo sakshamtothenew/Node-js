@@ -45,6 +45,10 @@ const itemSchema = new Schema({
 })
 
 
+itemSchema.pre('update' , function() {
+    this.set({updatedDate : Date.now()})
+})
+
 const itemModel = mongoose.model("items", itemSchema)
 
 module.exports = itemModel;
