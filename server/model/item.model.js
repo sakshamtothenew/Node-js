@@ -45,7 +45,7 @@ const itemSchema = new Schema({
 })
 
 
-itemSchema.pre('update' , function() {
+itemSchema.pre('updateOne' , function() {
     this.set({updatedDate : Date.now()})
 })
 
