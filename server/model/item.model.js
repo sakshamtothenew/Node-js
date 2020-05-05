@@ -34,11 +34,13 @@ const itemSchema = new Schema({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        enum : ["groceries" , "fruits&veg" , "babycare" , "beverages"]
     },
     location: {
         type: String,
-        required: true
+        required: true,
+        enum : ["bathroom" , "kitchen"]
     }
 })
 
