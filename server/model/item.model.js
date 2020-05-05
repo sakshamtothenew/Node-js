@@ -49,6 +49,10 @@ itemSchema.pre('update' , function() {
     this.set({updatedDate : Date.now()})
 })
 
+
+itemSchema.pre('save' , function() {
+    this.set({createdDate : Date.now()})
+} )
 const itemModel = mongoose.model("items", itemSchema)
 
 module.exports = itemModel;
