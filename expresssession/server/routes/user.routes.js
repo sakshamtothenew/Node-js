@@ -1,8 +1,10 @@
-const {addUser} = require('../controllers/user.controllers')
+const {addUser , authenticate} = require('../controllers/user.controllers')
 const route = require('express').Router()
 
 
-route.post('/Login' , addUser);
+route.post('/Signup' , addUser);
+
+route.post('/login' , authenticate )
 
 
 module.exports = route;

@@ -5,7 +5,7 @@ const session = require('express-session')
 const cors = require('cors')
 const axios = require('axios')
 
-
+require('./config/passport')(passport);
 const sessions = [];
 
 
@@ -19,6 +19,15 @@ const addCreatedAt = (req, res, next) => {
     next();
 }
 
+const checkAuthentication = (req , res , next) => {
+     if(req.isAuthenticated()){
+         next();
+     }
+     else {
+        alert('you are not authenticated')
+        res.redirect('http://localhost:3000/auth/Signup')
+     }
+}
 
 const getindex = (time) => {
 
@@ -38,8 +47,12 @@ app.use(session({ secret: "sshhhhss", saveUninitialized: true, resave: true, coo
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/aboutus', express.static(__dirname + "/aboutus"))
 
+
+app.use('/auth' , require('./routes/user.routes'))
 
 
 const sessionValidator = (req, res, next) => {
