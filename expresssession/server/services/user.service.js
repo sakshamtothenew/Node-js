@@ -1,6 +1,6 @@
-const User = require('../model/user.model')
+const {User} = require('../model/user.model')
 
-export const addUser = async ({
+ const addUser = async ({
     email , 
     password,
     name 
@@ -11,9 +11,15 @@ export const addUser = async ({
      email , 
      password
     })
-    newUser.save()
+  const user =   newUser.save()
     .then(result => result)
     .catch(err=> err)
-
+    
+  return user;
 }
 
+
+module.exports = {
+    addUser 
+
+}

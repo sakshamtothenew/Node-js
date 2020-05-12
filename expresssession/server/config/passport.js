@@ -1,4 +1,4 @@
-const localStrategy = require('passport-local').Strategy();
+const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 
 const { User } = require('../model/user.model')
@@ -6,12 +6,12 @@ const { User } = require('../model/user.model')
 
 module.exports = function (passport) {
     passport.use(
-        new localStrategy({ usernameField: 'email' }, (email, password, done) => {
+        new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
             User.findOne({
                 email: email
             })
                 .then(user => {
-
+                        console.log("it reached here ")
                     if (!user) {
                         done(null, false, { message: 'invalid user , please try again' })
                     }
@@ -31,7 +31,7 @@ module.exports = function (passport) {
 
 
     passport.serializeUser(function (user, done) {
-        done(null, user.id);
+        done(null, user._id);
     });
 
     passport.deserializeUser(function (id, done) {

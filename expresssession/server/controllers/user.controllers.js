@@ -1,7 +1,8 @@
 const {addUser} = require('../services/user.service')
 const bcrypt = require('bcrypt')
+const passport = require('passport')
 
-export const addUser = async  (req , res) => {
+const addUsers = async  (req , res) => {
 
   const salt = 10;
   req.body.password =  bcrypt.hashSync(req.body.password , salt);
@@ -11,11 +12,14 @@ export const addUser = async  (req , res) => {
 }
 
 
-export const authenticate = async (req , res ) => {
-
-    passport.authenticate("local", {
-        successRedirect: "http://localhost:3000/users/",
-        failureRedirect: "http://localhost:3000/auth/login",
-        failureFlash: true
-      })
+ const authenticate =  (req , res , next ) => {
+  console.log('it came here')
+    passport.authenticate("local",(err , user , info) => {
+      if(err) {return next(err)} 
+      if(user) {res.send(user)} 
+      
+    })(req , res , next)
 }
+
+
+module.exports = {addUsers , authenticate}
