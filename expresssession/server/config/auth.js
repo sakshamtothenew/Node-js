@@ -1,11 +1,14 @@
 
  const checkAuthentication = (req , res , next) => {
+
+    console.log(req.isAuthenticated())
+      console.log(req.user);
     if(req.isAuthenticated()){
         next();
     }
     else {
-       alert('you are not authenticated')
-       res.redirect('http://localhost:3000/auth')
+    
+       res.send({message : "please Login/signup"})
     }
 }
 module.exports = {checkAuthentication}

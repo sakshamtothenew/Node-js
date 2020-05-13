@@ -44,3 +44,33 @@
     color : rgb(8, 73, 8);  
     font-size : 23px;  
 }
+
+.google {
+    padding : 2% 3%;
+    background : transparent;
+   
+    border : none;
+        cursor : pointer
+}
+
+.google a {
+    color : rgb(221, 15, 15);
+    font-weight: bold;
+    font-size : 20px;
+    text-decoration: none;
+}
+
+.signin {
+    font-weight: bold;
+    font-size : 20px;
+    color : rgb(221, 15, 15);
+    font-weight: bold;
+    font-size : 20px;
+    text-decoration: none;
+    border : none;
+    cursor : pointer;
+    padding : 2% 3%;
+    background : transparent;
+   
+  
+}

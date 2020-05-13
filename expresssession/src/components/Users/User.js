@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import classes from './user.module.css'
 import { withRouter } from 'react-router-dom'
+import queryString from 'query-string'
 
 const Users = (props) => {
 
@@ -10,25 +11,59 @@ const Users = (props) => {
 
     useEffect(() => {
 
-        axios.get('http://localhost:5000/' + props.sessionId)
+
+
+        const token = props.location.search.split('=')[1];
+
+        axios.get('http://localhost:5000/student', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then(Response => {
-                if (typeof (Response.data) == "string") {
-                    setUsers([])
-                    alert("session expires please login ")
+                if (Response.data.message) {
+                    alert('Please Login again session Expired')
+
                     props.history.push('/login')
                 }
-                setUsers(Response.data);
+                else {
+                    setUsers(Response.data)
+                }
             })
     }, [])
 
 
 
+
+
     const userDeletehandler = (timestamp) => {
 
-        axios.delete('http://localhost:5000/' + timestamp )
+        axios.delete('http://localhost:5000/student/' + timestamp)
             .then(response => {
-                console.log(response.data)
-                setUsers(response.data);
+                if (response.data.ok == 1) {
+                    const token = sessionStorage.getItem("token");
+
+                    axios.get('http://localhost:5000/student', {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    })
+                        .then(Response => {
+
+                            if (Response.data.message) {
+                                alert('Please Login again session Expired')
+
+                                props.history.push('/login')
+                            }
+                            else {
+                                setUsers(Response.data)
+                            }
+                        })
+                }
+
+            })
+            .catch(err => {
+                setUsers([])
             })
     }
 
@@ -39,11 +74,11 @@ const Users = (props) => {
     const userslist = users.map((eachStudent) => {
 
         return (
-            <tr key={eachStudent.createdAt}>
+            <tr key={eachStudent._id}>
                 <td>{eachStudent.firstname}</td>
                 <td>{eachStudent.lastname}</td>
                 <td>{eachStudent.branch}</td>
-                <td><button onClick={() => userDeletehandler(eachStudent.createdAt)} className={classes.btn}>Delete</button></td>
+                <td><button onClick={() => userDeletehandler(eachStudent._id)} className={classes.btn}>Delete</button></td>
             </tr>
         )
     })
