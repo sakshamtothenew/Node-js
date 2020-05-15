@@ -4,9 +4,9 @@ const { getStudents, addStudents, deleteStudents } = require('../controllers/stu
 // const {chtoeckAuthentication} = require('../config/auth')
 const verifyToken = require('../config/verifytoken')
 
-route.get('/', verifyToken , getStudents)
+route.get('/',  getStudents)
 
-route.post('/', verifyToken , addStudents)
+route.post('/' , addStudents)
 
 route.delete('/:id', deleteStudents)
 

@@ -16,9 +16,9 @@ const Users = (props) => {
         const token = props.location.search.split('=')[1];
 
         axios.get('http://localhost:5000/student', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            // headers: {
+            //     Authorization: `Bearer ${token}`
+            // }
         })
             .then(Response => {
                 if (Response.data.message) {
