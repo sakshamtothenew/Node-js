@@ -14,7 +14,7 @@ const Users = (props) => {
 
 
         const token = props.location.search.split('=')[1];
-
+   sessionStorage.setItem("token" , token)
         axios.get('http://localhost:5000/student', {
             headers: {
                 Authorization: `Bearer ${token}`
