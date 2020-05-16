@@ -8,7 +8,14 @@ const addUsers = async  (req , res) => {
   req.body.password =  bcrypt.hashSync(req.body.password , salt);
     
         const data = await addUser(req.body);
-        res.send(data)
+
+        jwt.sign({data} , 'secretkey'  , {expiresIn : '60s'} , (err , token)=> {
+          res.json({
+            ...data,
+            token
+          })
+        })
+        
 }
 
 

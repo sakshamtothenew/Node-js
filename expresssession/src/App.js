@@ -23,7 +23,11 @@ function App(props) {
     axios.post('http://localhost:5000/auth/Signup', { name, email, password })
       .then(res => {
         console.log(res.data)
-        props.history.push('/')
+        props.history.push({
+          pathname: '/',
+          search: `?token=${res.data.token}`
+        })
+      
       })
     axios.get('http://localhost:5000/github/sakshamsachdeva13')
       .then(response => {
