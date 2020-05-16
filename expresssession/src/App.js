@@ -29,7 +29,7 @@ function App(props) {
           pathname: '/',
           search: `?token=${res.data.token}`
         })
-      
+
       })
     axios.get('http://localhost:5000/github/sakshamsachdeva13')
       .then(response => {
