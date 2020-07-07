@@ -1,0 +1,76 @@
+.main {
+     width : 50%;
+     margin : 2% auto;
+     text-align : center;
+}
+
+.form {
+    padding : 2%;
+    border : 1px solid #888888;
+    
+}
+
+.form input  {
+      font-size : 17px;
+    padding : 2% 2%;
+
+      margin : 2%;
+      outline : none;
+      border : 1px solid #555555;
+      display : block;
+
+}
+
+.form select {
+    display: block;
+    padding : 2% 2%;
+    margin : 2%;
+    outline : none;
+    background-color: transparent;
+    font-size : 17px;
+}
+.form button {
+     padding : 2% 3%;
+     background : transparent;
+     color : rgb(33, 163, 33);
+     font-weight: bold;
+     font-size : 20px;
+     border : none;
+     cursor : pointer
+}
+
+.form button:hover {
+    transition: all ease 0.1s;
+    color : rgb(8, 73, 8);  
+    font-size : 23px;  
+}
+
+.google {
+    padding : 2% 3%;
+    background : transparent;
+   
+    border : none;
+        cursor : pointer
+}
+
+.google a {
+    color : rgb(221, 15, 15);
+    font-weight: bold;
+    font-size : 20px;
+    text-decoration: none;
+}
+
+.signin {
+    font-weight: bold;
+    font-size : 20px;
+    color : rgb(221, 15, 15);
+    font-weight: bold;
+    font-size : 20px;
+    text-decoration: none;
+    border : none;
+    cursor : pointer;
+    padding : 2% 3%;
+    background : transparent;
+   
+  
+}
