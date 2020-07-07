@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import classes from './add.module.css'
 import {withRouter} from 'react-router-dom'
+
 const AddUser = (props) => {
 
     const addUserhandler = (event) => {
@@ -11,10 +12,14 @@ const AddUser = (props) => {
             lastname : event.target[1].value,
             branch : event.target[2].value
          }
-        axios.post('http://localhost:5000/adduser'  , newuser)
+        axios.post('http://localhost:5000/adduser/'+ props.sessionId  , newuser)
         .then(Response => {
-             console.log(Response)
+              if(Response.data)
               props.history.push('/')
+              else {
+                 alert('session expired please login')
+                 props.history.push('/login')
+              }
         }
              )
     }

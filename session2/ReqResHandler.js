@@ -19,11 +19,7 @@ const userRequestResponseHandler = (request) => {
             searchedName = [...users];
         }
     }
-
-    return JSON.stringify(searchedName)
-
-
-
+    return JSON.stringify(searchedName);
 }
 
 
